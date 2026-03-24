@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { Navbar } from '@/components/navbar'
 import { Sidebar } from '@/components/dashboard/sidebar'
 import { StatsCards } from '@/components/dashboard/stats-cards'
 import { ClientTable } from '@/components/dashboard/client-table'
@@ -9,7 +10,11 @@ import { AIAnalysisPanel } from '@/components/dashboard/ai-analysis-panel'
 
 export default function DashboardPage() {
   return (
-    <div className="min-h-screen bg-background flex">
+    <div className="min-h-screen bg-background">
+      {/* Full Navbar */}
+      <Navbar />
+      
+      <div className="flex pt-16 md:pt-20">
       {/* Sidebar */}
       <Sidebar />
 
@@ -52,6 +57,7 @@ export default function DashboardPage() {
           </motion.div>
         </div>
       </main>
+      </div>
     </div>
   )
 }

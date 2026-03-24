@@ -3,8 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Scale, Menu, X, Sun, Moon } from 'lucide-react'
-import { useTheme } from 'next-themes'
+import { Scale, Menu, X } from 'lucide-react'
 
 const navLinks = [
   { href: '/get-help', label: 'Get Help' },
@@ -17,12 +16,6 @@ const navLinks = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const { theme, setTheme, resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,10 +24,6 @@ export function Navbar() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  const toggleTheme = () => {
-    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
-  }
 
   return (
     <motion.nav
@@ -76,25 +65,8 @@ export function Navbar() {
             ))}
           </div>
 
-          {/* Right Side - Theme Toggle & CTA Buttons */}
+          {/* Right Side - CTA Buttons */}
           <div className="hidden md:flex items-center gap-3">
-            {/* Theme Toggle Button */}
-            {mounted && (
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={toggleTheme}
-                className="p-2 rounded-lg border border-border bg-background hover:bg-muted transition-colors"
-                aria-label="Toggle theme"
-              >
-                {resolvedTheme === 'dark' ? (
-                  <Sun className="w-4 h-4 text-gold" />
-                ) : (
-                  <Moon className="w-4 h-4 text-gold" />
-                )}
-              </motion.button>
-            )}
-
             <Link href="/get-help">
               <motion.button
                 whileHover={{ scale: 1.02 }}
@@ -116,28 +88,12 @@ export function Navbar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-2">
-            {/* Mobile Theme Toggle */}
-            {mounted && (
-              <button
-                onClick={toggleTheme}
-                className="p-2 rounded-lg border border-border bg-background"
-                aria-label="Toggle theme"
-              >
-                {resolvedTheme === 'dark' ? (
-                  <Sun className="w-4 h-4 text-gold" />
-                ) : (
-                  <Moon className="w-4 h-4 text-gold" />
-                )}
-              </button>
-            )}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-foreground"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 text-foreground"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
 
         {/* Mobile Menu */}
