@@ -9,7 +9,6 @@ import {
   IndianRupee, 
   Calendar, 
   CheckCircle2,
-  X,
   Filter,
   Search,
   Scale,
@@ -17,7 +16,6 @@ import {
 } from 'lucide-react'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
-import { AnimatedBackground } from '@/components/animated-background'
 
 const specializations = [
   { id: 'all', label: 'All Specializations' },
@@ -190,7 +188,6 @@ export default function BookLawyerPage() {
 
   const handleSubmitBooking = (e: React.FormEvent) => {
     e.preventDefault()
-    // Generate a random booking ID
     const id = 'CC' + Math.random().toString(36).substring(2, 8).toUpperCase()
     setBookingId(id)
     setBookingStep('confirmation')
@@ -210,7 +207,6 @@ export default function BookLawyerPage() {
     setBookingId('')
   }
 
-  // Generate dates for the next 7 days
   const getAvailableDates = () => {
     const dates = []
     const today = new Date()
@@ -228,8 +224,7 @@ export default function BookLawyerPage() {
   const availableDates = getAvailableDates()
 
   return (
-    <main className="min-h-screen bg-[#050d1f] relative overflow-hidden">
-      <AnimatedBackground />
+    <main className="min-h-screen bg-background relative overflow-hidden">
       <Navbar />
 
       <section className="relative pt-32 pb-20 px-4">
@@ -250,14 +245,14 @@ export default function BookLawyerPage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="font-serif text-4xl md:text-5xl font-bold text-[#f0f4ff] mb-4"
+                    className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4"
                   >
                     Book a{' '}
-                    <span className="bg-gradient-to-r from-[#c9a84c] via-[#e8d48a] to-[#c9a84c] bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-gold via-[#e8d48a] to-gold bg-clip-text text-transparent">
                       Consultation
                     </span>
                   </motion.h1>
-                  <p className="text-lg text-[#8892a4] max-w-2xl mx-auto">
+                  <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                     Connect with experienced lawyers specializing in your legal matter. 
                     Schedule a consultation at your convenience.
                   </p>
@@ -265,29 +260,27 @@ export default function BookLawyerPage() {
 
                 {/* Search and Filter Bar */}
                 <div className="flex flex-col md:flex-row gap-4 mb-8">
-                  {/* Search Input */}
                   <div className="relative flex-1">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#8892a4]" />
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                     <input
                       type="text"
                       placeholder="Search lawyers by name or specialization..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full pl-12 pr-4 py-3 rounded-xl bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] text-[#f0f4ff] placeholder-[#8892a4] focus:outline-none focus:border-[rgba(201,168,76,0.3)] transition-colors"
+                      className="w-full pl-12 pr-4 py-3 rounded-xl bg-card border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:border-gold/30 transition-colors"
                     />
                   </div>
 
-                  {/* Filter Dropdown - Mobile */}
                   <div className="md:hidden">
                     <div className="relative">
-                      <Filter className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#8892a4]" />
+                      <Filter className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                       <select
                         value={selectedFilter}
                         onChange={(e) => setSelectedFilter(e.target.value)}
-                        className="w-full pl-12 pr-4 py-3 rounded-xl bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] text-[#f0f4ff] focus:outline-none focus:border-[rgba(201,168,76,0.3)] transition-colors appearance-none"
+                        className="w-full pl-12 pr-4 py-3 rounded-xl bg-card border border-border text-foreground focus:outline-none focus:border-gold/30 transition-colors appearance-none"
                       >
                         {specializations.map((spec) => (
-                          <option key={spec.id} value={spec.id} className="bg-[#0a1628]">
+                          <option key={spec.id} value={spec.id} className="bg-background">
                             {spec.label}
                           </option>
                         ))}
@@ -304,8 +297,8 @@ export default function BookLawyerPage() {
                       onClick={() => setSelectedFilter(spec.id)}
                       className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                         selectedFilter === spec.id
-                          ? 'bg-[#c9a84c] text-[#050d1f]'
-                          : 'bg-[rgba(255,255,255,0.04)] text-[#8892a4] border border-[rgba(255,255,255,0.08)] hover:border-[rgba(201,168,76,0.3)] hover:text-[#f0f4ff]'
+                          ? 'bg-gold text-primary-foreground'
+                          : 'bg-card text-muted-foreground border border-border hover:border-gold/30 hover:text-foreground'
                       }`}
                     >
                       {spec.label}
@@ -321,35 +314,33 @@ export default function BookLawyerPage() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: index * 0.1 }}
-                      className="relative rounded-2xl p-6 bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.08)] hover:border-[rgba(201,168,76,0.2)] transition-all duration-300 group"
+                      className="relative rounded-2xl p-6 bg-card border border-border hover:border-gold/20 transition-all duration-300 group"
                     >
                       <div className="flex gap-4">
-                        {/* Avatar Placeholder */}
-                        <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-[#1a2a4a] to-[#0a1628] flex items-center justify-center flex-shrink-0 border border-[rgba(255,255,255,0.08)]">
-                          <Scale className="w-8 h-8 text-[#c9a84c]" />
+                        <div className="w-20 h-20 rounded-xl bg-muted flex items-center justify-center flex-shrink-0 border border-border">
+                          <Scale className="w-8 h-8 text-gold" />
                         </div>
 
-                        {/* Lawyer Info */}
                         <div className="flex-1 min-w-0">
-                          <h3 className="text-lg font-semibold text-[#f0f4ff] mb-1 truncate">
+                          <h3 className="text-lg font-semibold text-foreground mb-1 truncate">
                             {lawyer.name}
                           </h3>
-                          <p className="text-sm text-[#c9a84c] mb-2">{lawyer.specializationLabel}</p>
+                          <p className="text-sm text-gold mb-2">{lawyer.specializationLabel}</p>
                           
-                          <div className="flex flex-wrap items-center gap-3 text-sm text-[#8892a4]">
+                          <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
                             <span className="flex items-center gap-1">
                               <Briefcase className="w-4 h-4" />
                               {lawyer.experience} yrs
                             </span>
                             <span className="flex items-center gap-1">
-                              <Star className="w-4 h-4 text-[#c9a84c] fill-[#c9a84c]" />
+                              <Star className="w-4 h-4 text-gold fill-gold" />
                               {lawyer.rating} ({lawyer.reviews})
                             </span>
                           </div>
                         </div>
                       </div>
 
-                      <p className="text-sm text-[#8892a4] mt-4 leading-relaxed line-clamp-2">
+                      <p className="text-sm text-muted-foreground mt-4 leading-relaxed line-clamp-2">
                         {lawyer.description}
                       </p>
 
@@ -357,23 +348,23 @@ export default function BookLawyerPage() {
                         {lawyer.languages.map((lang) => (
                           <span
                             key={lang}
-                            className="px-2 py-1 text-xs rounded-md bg-[rgba(255,255,255,0.04)] text-[#8892a4] border border-[rgba(255,255,255,0.06)]"
+                            className="px-2 py-1 text-xs rounded-md bg-muted text-muted-foreground border border-border"
                           >
                             {lang}
                           </span>
                         ))}
                       </div>
 
-                      <div className="flex items-center justify-between mt-6 pt-4 border-t border-[rgba(255,255,255,0.06)]">
+                      <div className="flex items-center justify-between mt-6 pt-4 border-t border-border">
                         <div className="flex items-center gap-1">
-                          <IndianRupee className="w-4 h-4 text-[#c9a84c]" />
-                          <span className="text-xl font-bold text-[#f0f4ff]">{lawyer.price}</span>
-                          <span className="text-sm text-[#8892a4]">/consultation</span>
+                          <IndianRupee className="w-4 h-4 text-gold" />
+                          <span className="text-xl font-bold text-foreground">{lawyer.price}</span>
+                          <span className="text-sm text-muted-foreground">/consultation</span>
                         </div>
 
                         <button
                           onClick={() => handleBookConsultation(lawyer)}
-                          className="px-5 py-2.5 rounded-lg font-medium text-sm text-[#050d1f] bg-gradient-to-r from-[#c9a84c] via-[#e8d48a] to-[#c9a84c] hover:shadow-lg hover:shadow-[rgba(201,168,76,0.2)] transition-all duration-300"
+                          className="px-5 py-2.5 rounded-lg font-medium text-sm text-primary-foreground gold-shimmer hover:shadow-lg hover:shadow-gold/20 transition-all duration-300"
                         >
                           Book Consultation
                         </button>
@@ -384,8 +375,8 @@ export default function BookLawyerPage() {
 
                 {filteredLawyers.length === 0 && (
                   <div className="text-center py-16">
-                    <Scale className="w-12 h-12 text-[#8892a4] mx-auto mb-4" />
-                    <p className="text-[#8892a4]">No lawyers found matching your criteria.</p>
+                    <Scale className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+                    <p className="text-muted-foreground">No lawyers found matching your criteria.</p>
                   </div>
                 )}
               </motion.div>
@@ -403,38 +394,37 @@ export default function BookLawyerPage() {
               >
                 <button
                   onClick={handleBackToList}
-                  className="flex items-center gap-2 text-[#8892a4] hover:text-[#c9a84c] transition-colors mb-8"
+                  className="flex items-center gap-2 text-muted-foreground hover:text-gold transition-colors mb-8"
                 >
                   <ArrowLeft className="w-5 h-5" />
                   Back to lawyers
                 </button>
 
-                <div className="rounded-2xl p-6 md:p-8 bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.08)]">
-                  <h2 className="font-serif text-2xl md:text-3xl font-bold text-[#f0f4ff] mb-6">
+                <div className="rounded-2xl p-6 md:p-8 bg-card border border-border">
+                  <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground mb-6">
                     Book Consultation
                   </h2>
 
                   {/* Selected Lawyer Card */}
-                  <div className="flex gap-4 p-4 rounded-xl bg-[rgba(255,255,255,0.02)] border border-[rgba(201,168,76,0.2)] mb-8">
-                    <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-[#1a2a4a] to-[#0a1628] flex items-center justify-center flex-shrink-0 border border-[rgba(255,255,255,0.08)]">
-                      <Scale className="w-6 h-6 text-[#c9a84c]" />
+                  <div className="flex gap-4 p-4 rounded-xl bg-muted/50 border border-gold/20 mb-8">
+                    <div className="w-16 h-16 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 border border-border">
+                      <Scale className="w-6 h-6 text-gold" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-[#f0f4ff]">{selectedLawyer.name}</h3>
-                      <p className="text-sm text-[#c9a84c]">{selectedLawyer.specializationLabel}</p>
+                      <h3 className="text-lg font-semibold text-foreground">{selectedLawyer.name}</h3>
+                      <p className="text-sm text-gold">{selectedLawyer.specializationLabel}</p>
                       <div className="flex items-center gap-1 mt-1">
-                        <IndianRupee className="w-4 h-4 text-[#8892a4]" />
-                        <span className="text-[#f0f4ff] font-semibold">{selectedLawyer.price}</span>
-                        <span className="text-sm text-[#8892a4]">/consultation</span>
+                        <IndianRupee className="w-4 h-4 text-muted-foreground" />
+                        <span className="text-foreground font-semibold">{selectedLawyer.price}</span>
+                        <span className="text-sm text-muted-foreground">/consultation</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Booking Form */}
                   <form onSubmit={handleSubmitBooking} className="space-y-6">
-                    {/* Date Selection */}
                     <div>
-                      <label className="block text-sm font-medium text-[#f0f4ff] mb-3">
+                      <label className="block text-sm font-medium text-foreground mb-3">
                         <Calendar className="w-4 h-4 inline mr-2" />
                         Select Date
                       </label>
@@ -446,8 +436,8 @@ export default function BookLawyerPage() {
                             onClick={() => setSelectedDate(date.value)}
                             className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
                               selectedDate === date.value
-                                ? 'bg-[#c9a84c] text-[#050d1f]'
-                                : 'bg-[rgba(255,255,255,0.04)] text-[#8892a4] border border-[rgba(255,255,255,0.08)] hover:border-[rgba(201,168,76,0.3)]'
+                                ? 'bg-gold text-primary-foreground'
+                                : 'bg-muted text-muted-foreground border border-border hover:border-gold/30'
                             }`}
                           >
                             {date.label}
@@ -456,9 +446,8 @@ export default function BookLawyerPage() {
                       </div>
                     </div>
 
-                    {/* Time Slot Selection */}
                     <div>
-                      <label className="block text-sm font-medium text-[#f0f4ff] mb-3">
+                      <label className="block text-sm font-medium text-foreground mb-3">
                         <Clock className="w-4 h-4 inline mr-2" />
                         Select Time Slot
                       </label>
@@ -473,10 +462,10 @@ export default function BookLawyerPage() {
                               onClick={() => setSelectedTime(time)}
                               className={`px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ${
                                 selectedTime === time
-                                  ? 'bg-[#c9a84c] text-[#050d1f]'
+                                  ? 'bg-gold text-primary-foreground'
                                   : isAvailable
-                                  ? 'bg-[rgba(255,255,255,0.04)] text-[#8892a4] border border-[rgba(255,255,255,0.08)] hover:border-[rgba(201,168,76,0.3)]'
-                                  : 'bg-[rgba(255,255,255,0.02)] text-[#555] border border-[rgba(255,255,255,0.04)] cursor-not-allowed'
+                                  ? 'bg-muted text-muted-foreground border border-border hover:border-gold/30'
+                                  : 'bg-muted/30 text-muted-foreground/50 border border-border/50 cursor-not-allowed'
                               }`}
                             >
                               {time}
@@ -486,9 +475,8 @@ export default function BookLawyerPage() {
                       </div>
                     </div>
 
-                    {/* Case Description */}
                     <div>
-                      <label className="block text-sm font-medium text-[#f0f4ff] mb-3">
+                      <label className="block text-sm font-medium text-foreground mb-3">
                         Describe Your Case
                       </label>
                       <textarea
@@ -497,15 +485,14 @@ export default function BookLawyerPage() {
                         placeholder="Briefly describe your legal matter so the lawyer can prepare for your consultation..."
                         rows={4}
                         required
-                        className="w-full px-4 py-3 rounded-xl bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] text-[#f0f4ff] placeholder-[#8892a4] focus:outline-none focus:border-[rgba(201,168,76,0.3)] transition-colors resize-none"
+                        className="w-full px-4 py-3 rounded-xl bg-muted border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:border-gold/30 transition-colors resize-none"
                       />
                     </div>
 
-                    {/* Submit Button */}
                     <button
                       type="submit"
                       disabled={!selectedDate || !selectedTime || !caseDescription}
-                      className="w-full py-4 rounded-xl font-semibold text-[#050d1f] bg-gradient-to-r from-[#c9a84c] via-[#e8d48a] to-[#c9a84c] hover:shadow-lg hover:shadow-[rgba(201,168,76,0.3)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none"
+                      className="w-full py-4 rounded-xl font-semibold text-primary-foreground gold-shimmer hover:shadow-lg hover:shadow-gold/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none"
                     >
                       Confirm Booking - ₹{selectedLawyer.price}
                     </button>
@@ -524,41 +511,41 @@ export default function BookLawyerPage() {
                 transition={{ duration: 0.4 }}
                 className="max-w-2xl mx-auto text-center"
               >
-                <div className="rounded-2xl p-8 md:p-12 bg-[rgba(255,255,255,0.02)] border border-[rgba(201,168,76,0.2)]">
+                <div className="rounded-2xl p-8 md:p-12 bg-card border border-gold/20">
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
-                    className="w-20 h-20 rounded-full bg-gradient-to-br from-[#c9a84c] to-[#e8d48a] flex items-center justify-center mx-auto mb-6"
+                    className="w-20 h-20 rounded-full bg-gradient-to-br from-gold to-[#e8d48a] flex items-center justify-center mx-auto mb-6"
                   >
-                    <CheckCircle2 className="w-10 h-10 text-[#050d1f]" />
+                    <CheckCircle2 className="w-10 h-10 text-primary-foreground" />
                   </motion.div>
 
-                  <h2 className="font-serif text-3xl font-bold text-[#f0f4ff] mb-3">
+                  <h2 className="font-serif text-3xl font-bold text-foreground mb-3">
                     Booking Confirmed!
                   </h2>
-                  <p className="text-[#8892a4] mb-8">
+                  <p className="text-muted-foreground mb-8">
                     Your consultation has been successfully scheduled. You will receive a confirmation email shortly.
                   </p>
 
-                  <div className="bg-[rgba(255,255,255,0.02)] rounded-xl p-6 border border-[rgba(255,255,255,0.06)] mb-8 text-left">
-                    <div className="flex items-center justify-between mb-4 pb-4 border-b border-[rgba(255,255,255,0.06)]">
-                      <span className="text-sm text-[#8892a4]">Booking ID</span>
-                      <span className="font-mono text-[#c9a84c] font-semibold">{bookingId}</span>
+                  <div className="bg-muted/50 rounded-xl p-6 border border-border mb-8 text-left">
+                    <div className="flex items-center justify-between mb-4 pb-4 border-b border-border">
+                      <span className="text-sm text-muted-foreground">Booking ID</span>
+                      <span className="font-mono text-gold font-semibold">{bookingId}</span>
                     </div>
 
                     <div className="space-y-4">
                       <div className="flex justify-between">
-                        <span className="text-sm text-[#8892a4]">Lawyer</span>
-                        <span className="text-[#f0f4ff] font-medium">{selectedLawyer.name}</span>
+                        <span className="text-sm text-muted-foreground">Lawyer</span>
+                        <span className="text-foreground font-medium">{selectedLawyer.name}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-sm text-[#8892a4]">Specialization</span>
-                        <span className="text-[#f0f4ff]">{selectedLawyer.specializationLabel}</span>
+                        <span className="text-sm text-muted-foreground">Specialization</span>
+                        <span className="text-foreground">{selectedLawyer.specializationLabel}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-sm text-[#8892a4]">Date</span>
-                        <span className="text-[#f0f4ff]">
+                        <span className="text-sm text-muted-foreground">Date</span>
+                        <span className="text-foreground">
                           {new Date(selectedDate).toLocaleDateString('en-IN', { 
                             weekday: 'long', 
                             year: 'numeric', 
@@ -568,12 +555,12 @@ export default function BookLawyerPage() {
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-sm text-[#8892a4]">Time</span>
-                        <span className="text-[#f0f4ff]">{selectedTime}</span>
+                        <span className="text-sm text-muted-foreground">Time</span>
+                        <span className="text-foreground">{selectedTime}</span>
                       </div>
-                      <div className="flex justify-between pt-4 border-t border-[rgba(255,255,255,0.06)]">
-                        <span className="text-sm text-[#8892a4]">Amount Paid</span>
-                        <span className="text-[#c9a84c] font-bold text-lg">₹{selectedLawyer.price}</span>
+                      <div className="flex justify-between pt-4 border-t border-border">
+                        <span className="text-sm text-muted-foreground">Amount Paid</span>
+                        <span className="text-gold font-bold text-lg">₹{selectedLawyer.price}</span>
                       </div>
                     </div>
                   </div>
@@ -581,13 +568,13 @@ export default function BookLawyerPage() {
                   <div className="flex flex-col sm:flex-row gap-4">
                     <button
                       onClick={handleNewBooking}
-                      className="flex-1 py-3 rounded-xl font-medium text-[#c9a84c] border border-[rgba(201,168,76,0.3)] hover:border-[#c9a84c] transition-colors"
+                      className="flex-1 py-3 rounded-xl font-medium text-gold border border-gold/30 hover:border-gold transition-colors"
                     >
                       Book Another Consultation
                     </button>
                     <a
                       href="/"
-                      className="flex-1 py-3 rounded-xl font-medium text-[#050d1f] bg-gradient-to-r from-[#c9a84c] via-[#e8d48a] to-[#c9a84c] hover:shadow-lg hover:shadow-[rgba(201,168,76,0.2)] transition-all duration-300 text-center"
+                      className="flex-1 py-3 rounded-xl font-medium text-primary-foreground gold-shimmer hover:shadow-lg hover:shadow-gold/20 transition-all duration-300 text-center"
                     >
                       Back to Home
                     </a>

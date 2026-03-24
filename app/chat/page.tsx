@@ -12,7 +12,6 @@ import { ChallanEstimator } from '@/components/chat/challan-estimator'
 import { DocumentSelector } from '@/components/chat/document-selector'
 import { PropertySelector } from '@/components/chat/property-selector'
 import { FamilyLawSelector } from '@/components/chat/family-law-selector'
-import { CustomCursor } from '@/components/custom-cursor'
 import { Navbar } from '@/components/navbar'
 
 const topicLabels: Record<string, string> = {
@@ -228,8 +227,7 @@ function ChatPageContent() {
   }
 
   return (
-    <div className="flex flex-col h-screen bg-[#050d1f]">
-      <CustomCursor />
+    <div className="flex flex-col h-screen bg-background">
       <Navbar />
       
       {/* Main Content Area */}
@@ -244,17 +242,17 @@ function ChatPageContent() {
       {/* Main Chat Area */}
       <main className="flex-1 flex flex-col h-full pb-16 md:pb-0">
         {/* Header */}
-        <header className="flex items-center justify-between px-6 py-4 border-b border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)]">
+        <header className="flex items-center justify-between px-6 py-4 border-b border-border bg-card/50">
           <div className="flex items-center gap-3">
-            <h1 className="font-serif text-lg font-semibold text-[#f0f4ff]">
+            <h1 className="font-serif text-lg font-semibold text-foreground">
               {topicLabels[activeTopic]}
             </h1>
             <motion.span
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[rgba(123,97,255,0.15)] border border-[rgba(123,97,255,0.3)] text-xs font-medium text-[#7b61ff]"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-xs font-medium text-green-500"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
               AI Active
             </motion.span>
           </div>
@@ -287,8 +285,8 @@ function ChatPageContent() {
 export default function ChatPage() {
   return (
     <Suspense fallback={
-      <div className="flex items-center justify-center h-screen bg-[#050d1f]">
-        <div className="text-[#c9a84c]">Loading...</div>
+      <div className="flex items-center justify-center h-screen bg-background">
+        <div className="text-gold">Loading...</div>
       </div>
     }>
       <ChatPageContent />

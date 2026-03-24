@@ -21,42 +21,36 @@ const topics = [
     title: 'Divorce & Separation',
     description: 'Get guidance on divorce proceedings, alimony calculations, and matrimonial law under Hindu Marriage Act, Special Marriage Act, and more.',
     icon: Heart,
-    color: '#c9a84c',
   },
   {
     id: 'challan',
     title: 'Challan & Traffic',
     description: 'Understand traffic violations, fine calculations, court procedures, and license-related issues under Motor Vehicles Act.',
     icon: Car,
-    color: '#c9a84c',
   },
   {
     id: 'documents',
     title: 'Document Requirements',
     description: 'Find complete documentation requirements for passports, licenses, property registration, and government services.',
     icon: FileText,
-    color: '#c9a84c',
   },
   {
     id: 'property',
     title: 'Property Dispute',
     description: 'Navigate property disputes, land registration, RERA issues, and transfer of property matters with expert guidance.',
     icon: Home,
-    color: '#c9a84c',
   },
   {
     id: 'family',
     title: 'Family Law',
     description: 'Get help with custody, guardianship, maintenance, domestic violence protection, adoption, and inheritance matters.',
     icon: Users,
-    color: '#c9a84c',
   },
   {
     id: 'general',
     title: 'General Legal Query',
     description: 'Have a different legal question? Our AI assistant is trained on Indian law and ready to help with any legal matter.',
     icon: HelpCircle,
-    color: '#c9a84c',
   },
 ]
 
@@ -84,7 +78,7 @@ const cardVariants = {
 
 export default function GetHelpPage() {
   return (
-    <div className="min-h-screen bg-[#050d1f] flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
       
       {/* Hero Section */}
@@ -96,24 +90,24 @@ export default function GetHelpPage() {
             transition={{ duration: 0.6 }}
             className="flex items-center justify-center gap-3 mb-6"
           >
-            <Scale className="w-10 h-10 text-[#c9a84c]" />
+            <Scale className="w-10 h-10 text-gold" />
           </motion.div>
           
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-[#f0f4ff] mb-6"
+            className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6"
           >
             How Can We{' '}
-            <span className="text-[#c9a84c]">Help You?</span>
+            <span className="text-gold">Help You?</span>
           </motion.h1>
           
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-[#8892a4] max-w-2xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
           >
             Select a topic below to get personalized legal guidance from our AI assistant, 
             trained exclusively on Indian law.
@@ -139,32 +133,32 @@ export default function GetHelpPage() {
                 className="group"
               >
                 <Link href={`/chat?topic=${topic.id}`}>
-                  <div className="relative h-full p-6 rounded-2xl bg-gradient-to-br from-[#0a1628] to-[#0f1e3d] border border-[rgba(201,168,76,0.15)] hover:border-[rgba(201,168,76,0.4)] transition-all duration-300 overflow-hidden">
-                    {/* Background Glow Effect */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-[#c9a84c]/10 rounded-full blur-3xl" />
-                      <div className="absolute bottom-0 left-0 w-24 h-24 bg-[#c9a84c]/5 rounded-full blur-2xl" />
+                  <div className="relative h-full p-6 rounded-2xl bg-card border border-border hover:border-gold/30 hover:shadow-lg dark:hover:shadow-gold/5 transition-all duration-300 overflow-hidden">
+                    {/* Background Glow Effect - Dark mode */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 hidden dark:block">
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-gold/10 rounded-full blur-3xl" />
+                      <div className="absolute bottom-0 left-0 w-24 h-24 bg-gold/5 rounded-full blur-2xl" />
                     </div>
                     
                     {/* Content */}
                     <div className="relative z-10">
                       {/* Icon */}
-                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5 border border-[rgba(201,168,76,0.3)] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                        <IconComponent className="w-7 h-7 text-[#c9a84c]" />
+                      <div className="w-14 h-14 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                        <IconComponent className="w-7 h-7 text-gold" />
                       </div>
                       
                       {/* Title */}
-                      <h3 className="font-serif text-xl font-semibold text-[#f0f4ff] mb-3 group-hover:text-[#c9a84c] transition-colors duration-300">
+                      <h3 className="font-serif text-xl font-semibold text-foreground mb-3 group-hover:text-gold transition-colors duration-300">
                         {topic.title}
                       </h3>
                       
                       {/* Description */}
-                      <p className="text-[#8892a4] text-sm leading-relaxed mb-5">
+                      <p className="text-muted-foreground text-sm leading-relaxed mb-5">
                         {topic.description}
                       </p>
                       
                       {/* CTA Button */}
-                      <div className="flex items-center gap-2 text-[#c9a84c] font-medium text-sm group-hover:gap-3 transition-all duration-300">
+                      <div className="flex items-center gap-2 text-gold font-medium text-sm group-hover:gap-3 transition-all duration-300">
                         <span>Start Chat</span>
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                       </div>
@@ -172,7 +166,7 @@ export default function GetHelpPage() {
                     
                     {/* Corner Accent */}
                     <div className="absolute top-0 right-0 w-20 h-20 overflow-hidden">
-                      <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-[rgba(201,168,76,0.1)] to-transparent" />
+                      <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-gold/10 to-transparent" />
                     </div>
                   </div>
                 </Link>
@@ -190,18 +184,18 @@ export default function GetHelpPage() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="max-w-4xl mx-auto"
         >
-          <div className="relative p-8 md:p-12 rounded-2xl bg-gradient-to-r from-[#0a1628] via-[#0f1e3d] to-[#0a1628] border border-[rgba(201,168,76,0.2)] text-center overflow-hidden">
+          <div className="relative p-8 md:p-12 rounded-2xl bg-card border border-border text-center overflow-hidden">
             {/* Background Elements */}
             <div className="absolute inset-0 opacity-30">
-              <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-[#c9a84c]/10 rounded-full blur-3xl" />
-              <div className="absolute top-1/2 right-1/4 w-48 h-48 bg-[#c9a84c]/5 rounded-full blur-2xl" />
+              <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-gold/10 rounded-full blur-3xl" />
+              <div className="absolute top-1/2 right-1/4 w-48 h-48 bg-gold/5 rounded-full blur-2xl" />
             </div>
             
             <div className="relative z-10">
-              <h2 className="font-serif text-2xl md:text-3xl font-bold text-[#f0f4ff] mb-4">
+              <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground mb-4">
                 Need to Speak with a Real Lawyer?
               </h2>
-              <p className="text-[#8892a4] mb-8 max-w-xl mx-auto">
+              <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
                 Book a consultation with verified legal professionals across India. 
                 Get personalized advice for your specific situation.
               </p>
@@ -209,7 +203,7 @@ export default function GetHelpPage() {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="px-8 py-3.5 rounded-xl font-medium text-[#050d1f] gold-shimmer"
+                  className="px-8 py-3.5 rounded-xl font-medium text-primary-foreground gold-shimmer"
                 >
                   Book a Lawyer Consultation
                 </motion.button>

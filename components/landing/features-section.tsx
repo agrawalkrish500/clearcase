@@ -12,9 +12,7 @@ const features = [
     description: 'Complete guidance under Hindu Marriage Act & Special Marriage Act. Understand alimony, custody & property rights.',
     stat: '2,500+',
     statLabel: 'Cases Guided',
-    gradient: 'from-[#c9a84c] to-[#e8d48a]',
     href: '/chat?topic=divorce',
-    iconBg: 'bg-[#c9a84c]/10',
   },
   {
     icon: FileText,
@@ -22,9 +20,7 @@ const features = [
     description: 'Never be caught unprepared. Get exact document checklists for passport, license, property and government services.',
     stat: '50+',
     statLabel: 'Document Types',
-    gradient: 'from-[#6366f1] to-[#818cf8]',
     href: '/documents',
-    iconBg: 'bg-[#6366f1]/10',
   },
   {
     icon: Car,
@@ -32,9 +28,7 @@ const features = [
     description: 'Find the fastest, cheapest way to resolve any traffic challan. Get state-specific fine details and payment options.',
     stat: '29',
     statLabel: 'States Covered',
-    gradient: 'from-[#14b8a6] to-[#5eead4]',
     href: '/chat?topic=challan',
-    iconBg: 'bg-[#14b8a6]/10',
   },
   {
     icon: Briefcase,
@@ -42,9 +36,7 @@ const features = [
     description: 'Professional tools for advocates — client management, IPC section finder, and AI-powered case analysis.',
     stat: '500+',
     statLabel: 'Lawyers Trust Us',
-    gradient: 'from-[#f97316] to-[#fb923c]',
     href: '/dashboard',
-    iconBg: 'bg-[#f97316]/10',
   },
 ]
 
@@ -82,22 +74,22 @@ export function FeaturesSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="features" className="relative py-12 md:py-16 px-4" ref={ref}>
+    <section id="features" className="relative py-16 md:py-24 px-4" ref={ref}>
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="text-center mb-10"
+          className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[rgba(201,168,76,0.1)] border border-[rgba(201,168,76,0.2)] mb-4">
-            <span className="text-[#c9a84c] text-xs font-medium">Comprehensive Legal Tools</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold/10 border border-gold/20 mb-4">
+            <span className="text-gold text-xs font-medium">Comprehensive Legal Tools</span>
           </div>
-          <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-[#f0f4ff] mb-2">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             Everything You Need
           </h2>
-          <p className="text-[#8892a4] text-base max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Powerful legal tools designed specifically for modern India
           </p>
         </motion.div>
@@ -107,7 +99,7 @@ export function FeaturesSection() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="grid md:grid-cols-2 gap-4 mb-6"
+          className="grid md:grid-cols-2 gap-6 mb-8"
         >
           {features.map((feature) => (
             <motion.div
@@ -116,33 +108,33 @@ export function FeaturesSection() {
               className="group relative"
             >
               <Link href={feature.href}>
-                <div className="relative p-5 rounded-xl bg-[#0a1628] border border-[rgba(255,255,255,0.06)] transition-all duration-300 hover:border-[rgba(201,168,76,0.3)] hover:shadow-lg hover:shadow-[rgba(201,168,76,0.05)] h-full">
-                  {/* Hover glow effect */}
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-[rgba(201,168,76,0.05)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="relative p-6 rounded-2xl bg-card border border-border transition-all duration-300 hover:border-gold/30 hover:shadow-lg dark:hover:shadow-gold/5 h-full">
+                  {/* Hover glow effect - dark mode only */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 dark:block hidden" />
                   
                   {/* Header with icon and stat */}
-                  <div className="relative flex items-start justify-between mb-4">
-                    <div className={`inline-flex p-3 rounded-lg bg-gradient-to-br ${feature.gradient}`}>
-                      <feature.icon className="w-5 h-5 text-[#050d1f]" />
+                  <div className="relative flex items-start justify-between mb-5">
+                    <div className="inline-flex p-3 rounded-xl bg-gold/10 border border-gold/20">
+                      <feature.icon className="w-6 h-6 text-gold" />
                     </div>
                     <div className="text-right">
-                      <div className="text-lg font-bold text-[#c9a84c]">{feature.stat}</div>
-                      <div className="text-[10px] text-[#8892a4]">{feature.statLabel}</div>
+                      <div className="text-xl font-bold text-gold">{feature.stat}</div>
+                      <div className="text-xs text-muted-foreground">{feature.statLabel}</div>
                     </div>
                   </div>
 
                   {/* Content */}
-                  <h3 className="relative font-serif text-lg font-bold text-[#f0f4ff] mb-2">
+                  <h3 className="relative font-serif text-xl font-bold text-foreground mb-3">
                     {feature.title}
                   </h3>
-                  <p className="relative text-[#8892a4] leading-relaxed text-sm mb-4">
+                  <p className="relative text-muted-foreground leading-relaxed text-sm mb-5">
                     {feature.description}
                   </p>
 
                   {/* Learn more link */}
-                  <div className="relative inline-flex items-center gap-1.5 text-[#c9a84c] font-medium text-xs group/link">
+                  <div className="relative inline-flex items-center gap-2 text-gold font-medium text-sm group/link">
                     <span>Get Started</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
               </Link>
@@ -155,16 +147,16 @@ export function FeaturesSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-3"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4"
         >
           {additionalFeatures.map((item) => (
             <div
               key={item.label}
-              className="p-3 rounded-lg bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.04)] text-center"
+              className="p-4 rounded-xl bg-muted/50 dark:bg-card border border-border text-center hover:border-gold/30 transition-colors"
             >
-              <item.icon className="w-4 h-4 text-[#c9a84c] mx-auto mb-1.5" />
-              <div className="text-[#f0f4ff] font-semibold text-xs mb-0.5">{item.value}</div>
-              <div className="text-[#8892a4] text-[10px]">{item.label}</div>
+              <item.icon className="w-5 h-5 text-gold mx-auto mb-2" />
+              <div className="text-foreground font-semibold text-sm mb-1">{item.value}</div>
+              <div className="text-muted-foreground text-xs">{item.label}</div>
             </div>
           ))}
         </motion.div>

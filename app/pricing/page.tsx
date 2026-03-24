@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Check, ChevronDown } from 'lucide-react'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
-import { AnimatedBackground } from '@/components/animated-background'
 
 const plans = [
   {
@@ -36,7 +35,7 @@ const plans = [
       'Priority support',
       '5 client profiles',
     ],
-    buttonStyle: 'purple',
+    buttonStyle: 'secondary',
   },
   {
     name: 'Law Firm',
@@ -88,19 +87,19 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 
   return (
     <motion.div
-      className="border border-[rgba(255,255,255,0.08)] rounded-xl overflow-hidden bg-[rgba(255,255,255,0.02)]"
+      className="border border-border rounded-xl overflow-hidden bg-card"
       initial={false}
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between p-5 text-left hover:bg-[rgba(255,255,255,0.03)] transition-colors"
+        className="w-full flex items-center justify-between p-5 text-left hover:bg-muted/50 transition-colors"
       >
-        <span className="text-[#f0f4ff] font-medium">{question}</span>
+        <span className="text-foreground font-medium">{question}</span>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.2 }}
         >
-          <ChevronDown className="w-5 h-5 text-[#8892a4]" />
+          <ChevronDown className="w-5 h-5 text-muted-foreground" />
         </motion.div>
       </button>
       <AnimatePresence initial={false}>
@@ -111,7 +110,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-            <div className="px-5 pb-5 text-[#8892a4] leading-relaxed">
+            <div className="px-5 pb-5 text-muted-foreground leading-relaxed">
               {answer}
             </div>
           </motion.div>
@@ -123,8 +122,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 
 export default function PricingPage() {
   return (
-    <main className="min-h-screen bg-[#050d1f] relative overflow-hidden">
-      <AnimatedBackground />
+    <main className="min-h-screen bg-background relative overflow-hidden">
       <Navbar />
 
       <section className="relative pt-32 pb-20 px-4">
@@ -136,13 +134,13 @@ export default function PricingPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h1 className="font-serif text-4xl md:text-5xl font-bold text-[#f0f4ff] mb-4">
+            <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">
               Simple, Transparent{' '}
-              <span className="bg-gradient-to-r from-[#c9a84c] via-[#e8d48a] to-[#c9a84c] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-gold via-[#e8d48a] to-gold bg-clip-text text-transparent">
                 Pricing
               </span>
             </h1>
-            <p className="text-lg text-[#8892a4] max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Choose the plan that fits your needs. All plans include our core AI legal guidance.
             </p>
           </motion.div>
@@ -157,36 +155,36 @@ export default function PricingPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className={`relative rounded-2xl p-6 border ${
                   plan.badge
-                    ? 'border-[#c9a84c] bg-[rgba(201,168,76,0.05)]'
-                    : 'border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)]'
+                    ? 'border-gold bg-gold/5'
+                    : 'border-border bg-card'
                 }`}
               >
                 {plan.badge && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="px-3 py-1 text-xs font-semibold bg-[#c9a84c] text-[#050d1f] rounded-full">
+                    <span className="px-3 py-1 text-xs font-semibold bg-gold text-primary-foreground rounded-full">
                       {plan.badge}
                     </span>
                   </div>
                 )}
 
                 <div className="text-center mb-6 pt-2">
-                  <h3 className="text-xl font-semibold text-[#f0f4ff] mb-3">
+                  <h3 className="text-xl font-semibold text-foreground mb-3">
                     {plan.name}
                   </h3>
                   <div className="flex items-baseline justify-center gap-1">
-                    <span className="text-2xl text-[#8892a4]">₹</span>
-                    <span className="text-4xl font-bold text-[#f0f4ff]">
+                    <span className="text-2xl text-muted-foreground">₹</span>
+                    <span className="text-4xl font-bold text-foreground">
                       {plan.price}
                     </span>
-                    <span className="text-[#8892a4]">/month</span>
+                    <span className="text-muted-foreground">/month</span>
                   </div>
                 </div>
 
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 text-[#c9a84c] flex-shrink-0 mt-0.5" />
-                      <span className="text-[#8892a4] text-sm">{feature}</span>
+                      <Check className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
+                      <span className="text-muted-foreground text-sm">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -194,10 +192,10 @@ export default function PricingPage() {
                 <button
                   className={`w-full py-3 rounded-xl font-semibold transition-all duration-300 ${
                     plan.buttonStyle === 'gold'
-                      ? 'bg-gradient-to-r from-[#c9a84c] via-[#e8d48a] to-[#c9a84c] text-[#050d1f] hover:shadow-lg hover:shadow-[rgba(201,168,76,0.3)]'
-                      : plan.buttonStyle === 'purple'
-                      ? 'bg-gradient-to-r from-[#7b61ff] via-[#9d8cff] to-[#7b61ff] text-white hover:shadow-lg hover:shadow-[rgba(123,97,255,0.3)]'
-                      : 'border border-[#c9a84c] text-[#c9a84c] bg-transparent hover:bg-[rgba(201,168,76,0.1)]'
+                      ? 'gold-shimmer text-primary-foreground hover:shadow-lg hover:shadow-gold/30'
+                      : plan.buttonStyle === 'secondary'
+                      ? 'bg-muted text-foreground hover:bg-muted/80 border border-border'
+                      : 'border border-gold text-gold bg-transparent hover:bg-gold/10'
                   }`}
                 >
                   Get Started
@@ -211,7 +209,7 @@ export default function PricingPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="text-center text-[#8892a4] text-sm mb-24"
+            className="text-center text-muted-foreground text-sm mb-24"
           >
             All plans include a 7-day free trial. No credit card required.
           </motion.p>
@@ -222,7 +220,7 @@ export default function PricingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <h2 className="font-serif text-3xl font-bold text-[#f0f4ff] text-center mb-10">
+            <h2 className="font-serif text-3xl font-bold text-foreground text-center mb-10">
               Frequently Asked Questions
             </h2>
             <div className="max-w-3xl mx-auto space-y-4">

@@ -30,22 +30,22 @@ export function HowItWorksSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section className="relative py-12 md:py-16 px-4" ref={ref}>
+    <section className="relative py-16 md:py-24 px-4" ref={ref}>
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="text-center mb-10"
+          className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[rgba(201,168,76,0.1)] border border-[rgba(201,168,76,0.2)] mb-4">
-            <span className="text-[#c9a84c] text-xs font-medium">Simple 3-Step Process</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold/10 border border-gold/20 mb-4">
+            <span className="text-gold text-xs font-medium">Simple 3-Step Process</span>
           </div>
-          <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-[#f0f4ff] mb-2">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             How It Works
           </h2>
-          <p className="text-[#8892a4] text-base max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Get legal clarity in minutes, not days
           </p>
         </motion.div>
@@ -53,9 +53,9 @@ export function HowItWorksSection() {
         {/* Steps */}
         <div className="relative">
           {/* Connecting line */}
-          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(201,168,76,0.3)] to-transparent -translate-y-1/2" />
+          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent -translate-y-1/2" />
 
-          <div className="grid md:grid-cols-3 gap-4 lg:gap-6">
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
             {steps.map((step, index) => (
               <motion.div
                 key={step.number}
@@ -64,29 +64,29 @@ export function HowItWorksSection() {
                 transition={{ duration: 0.5, delay: index * 0.15 }}
                 className="relative"
               >
-                <div className="relative p-5 rounded-xl bg-[rgba(255,255,255,0.02)] backdrop-blur-xl border border-[rgba(255,255,255,0.06)] text-center group hover:border-[rgba(201,168,76,0.3)] transition-all duration-300">
+                <div className="relative p-6 rounded-2xl bg-card border border-border text-center group hover:border-gold/30 hover:shadow-lg dark:hover:shadow-gold/5 transition-all duration-300">
                   {/* Number badge */}
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#050d1f] border border-[#c9a84c] flex items-center justify-center">
-                    <span className="text-[#c9a84c] text-[10px] font-bold">{step.number}</span>
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-background border border-gold flex items-center justify-center">
+                    <span className="text-gold text-xs font-bold">{step.number}</span>
                   </div>
 
                   {/* Icon */}
-                  <div className="inline-flex p-3 rounded-lg bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5 mb-4 mt-1 group-hover:from-[#c9a84c]/30 group-hover:to-[#c9a84c]/10 transition-all duration-300">
-                    <step.icon className="w-6 h-6 text-[#c9a84c]" />
+                  <div className="inline-flex p-4 rounded-xl bg-gradient-to-br from-gold/20 to-gold/5 mb-5 mt-2 group-hover:from-gold/30 group-hover:to-gold/10 transition-all duration-300">
+                    <step.icon className="w-6 h-6 text-gold" />
                   </div>
 
                   {/* Content */}
-                  <h3 className="font-serif text-base font-bold text-[#f0f4ff] mb-2">
+                  <h3 className="font-serif text-lg font-bold text-foreground mb-3">
                     {step.title}
                   </h3>
-                  <p className="text-[#8892a4] leading-relaxed text-xs">
+                  <p className="text-muted-foreground leading-relaxed text-sm">
                     {step.description}
                   </p>
                 </div>
 
                 {/* Arrow for desktop */}
                 {index < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-6 w-12 text-[#c9a84c]/30">
+                  <div className="hidden lg:block absolute top-1/2 -right-6 w-12 text-gold/30">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>

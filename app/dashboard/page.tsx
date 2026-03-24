@@ -9,7 +9,7 @@ import { AIAnalysisPanel } from '@/components/dashboard/ai-analysis-panel'
 
 export default function DashboardPage() {
   return (
-    <div className="min-h-screen bg-[#050d1f] flex">
+    <div className="min-h-screen bg-background flex">
       {/* Sidebar */}
       <Sidebar />
 
@@ -23,10 +23,10 @@ export default function DashboardPage() {
           >
             {/* Welcome Header */}
             <div className="mb-8">
-              <h1 className="font-serif text-2xl lg:text-3xl font-bold text-[#f0f4ff] mb-2">
+              <h1 className="font-serif text-2xl lg:text-3xl font-bold text-foreground mb-2">
                 Welcome back, Rahul
               </h1>
-              <p className="text-[#8892a4]">
+              <p className="text-muted-foreground">
                 Here&apos;s an overview of your practice this month.
               </p>
             </div>

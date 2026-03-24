@@ -7,8 +7,6 @@ import {
   ChevronDown, ArrowRight, RefreshCw, Bookmark, ExternalLink,
   Lock, Unlock, Eye, EyeOff, Sparkles
 } from 'lucide-react'
-import { CustomCursor } from '@/components/custom-cursor'
-import { AnimatedBackground } from '@/components/animated-background'
 import { MobileNav } from '@/components/chat/mobile-nav'
 import { Navbar } from '@/components/navbar'
 
@@ -333,9 +331,7 @@ export default function IPCFinderPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050d1f] pb-20 md:pb-0">
-      <CustomCursor />
-      <AnimatedBackground />
+    <div className="min-h-screen bg-background pb-20 md:pb-0">
       <Navbar />
 
       {/* Hero Section */}
@@ -346,30 +342,30 @@ export default function IPCFinderPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgba(201,168,76,0.1)] border border-[rgba(201,168,76,0.2)] mb-6">
-              <BookOpen className="w-4 h-4 text-[#c9a84c]" />
-              <span className="text-sm text-[#c9a84c] font-medium">Indian Legal Database</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/20 mb-6">
+              <BookOpen className="w-4 h-4 text-gold" />
+              <span className="text-sm text-gold font-medium">Indian Legal Database</span>
             </div>
             
-            <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#f0f4ff] mb-4">
+            <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
               IPC & BNS Section{' '}
-              <span className="bg-gradient-to-r from-[#c9a84c] to-[#e8d48a] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-gold to-[#e8d48a] bg-clip-text text-transparent">
                 Finder
               </span>
             </h1>
-            <p className="text-lg text-[#8892a4] max-w-3xl mx-auto mb-8">
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
               Compare Indian Penal Code (1860) with Bharatiya Nyaya Sanhita (2023). 
               Find sections, punishments, and see what changed in the new criminal law.
             </p>
 
             {/* Law Type Toggle */}
-            <div className="inline-flex items-center gap-1 p-1 rounded-xl bg-[#0a1628] border border-[rgba(255,255,255,0.08)]">
+            <div className="inline-flex items-center gap-1 p-1 rounded-xl bg-card border border-border">
               <button
                 onClick={() => setLawType('both')}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                   lawType === 'both'
-                    ? 'bg-gradient-to-r from-[#c9a84c] to-[#e8d48a] text-[#050d1f]'
-                    : 'text-[#8892a4] hover:text-[#f0f4ff]'
+                    ? 'bg-gradient-to-r from-gold to-[#e8d48a] text-primary-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
                 Compare Both
@@ -378,8 +374,8 @@ export default function IPCFinderPage() {
                 onClick={() => setLawType('ipc')}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                   lawType === 'ipc'
-                    ? 'bg-gradient-to-r from-[#c9a84c] to-[#e8d48a] text-[#050d1f]'
-                    : 'text-[#8892a4] hover:text-[#f0f4ff]'
+                    ? 'bg-gradient-to-r from-gold to-[#e8d48a] text-primary-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
                 Old IPC (1860)
@@ -388,8 +384,8 @@ export default function IPCFinderPage() {
                 onClick={() => setLawType('bns')}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                   lawType === 'bns'
-                    ? 'bg-gradient-to-r from-[#c9a84c] to-[#e8d48a] text-[#050d1f]'
-                    : 'text-[#8892a4] hover:text-[#f0f4ff]'
+                    ? 'bg-gradient-to-r from-gold to-[#e8d48a] text-primary-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
                 New BNS (2023)
